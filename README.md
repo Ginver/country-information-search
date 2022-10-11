@@ -7,7 +7,8 @@ Maak op basis van de response de volgende string en log dit in de console:
 
 Maak op basis van de response de volgende string en log dit in de console: The capital is [city]
 
-Maak een functie die ongeacht het aantal currencies die in een land gebruikt worden, een string maakt. In een land kunnen één of twee currencies gebruikt worden:
+Maak een functie die ongeacht het aantal currencies die in een land gebruikt worden, een string maakt. 
+In een land kunnen één of twee currencies gebruikt worden:
 
 1 valuta: and you can pay with [currency]'s
 2 valuta's: and you can pay with [currency]'s and [currency]'s
