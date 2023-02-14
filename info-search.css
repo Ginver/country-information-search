@@ -2,18 +2,84 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     min-height: 100vh;
-    /*background-color: #0A1314;*/
+    background-color: #0A1314;
+    color: lightgoldenrodyellow;
+}
+
+#globe-img {
+    width: 600px;
 }
 
 #flag-img {
-    height: 40px;
-    width: 60px;
+    width: 100px;
+    padding: 10px;
+}
+
+#intro {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 0 0 10px;
+}
+
+#search {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#country-input {
+    display: flex;
+    align-items: center;
+    /*flex-direction: column;*/
+    font-family: "Times New Roman";
+}
+
+#country-result {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: "Times New Roman";
+    font-size: 40px;
+    padding: 5px;
+    color: lightgoldenrodyellow ;
+}
+
+p {
+    font-family: "Times New Roman";
+    font-size: 15px;
+    padding: 5px;
+}
+
+label {
+    font-family: "Times New Roman";
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px;
+
+}
+
+button {
+    font-family: "Times New Roman";
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px;
+    border: none;
+    background-color: green;
+    border-radius: 5px;
+    color: lightgoldenrodyellow;
 }

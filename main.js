@@ -49,7 +49,7 @@ async function search() {
 
     const countryInformation = document.getElementById("country-info");
     console.log("WHAT IS COUNTRYINFORMATION?", countryInformation)
-    countryInformation.textContent =`${countryName} is situated in ${subareaName} It has a population of ${amount} people. 
+    countryInformation.textContent =`${countryName} is situated in ${subareaName}. It has a population of ${amount} people.
     The capital is ${capitalCity} and you can pay with ${valutas}. They speak ${languages}`
     document.appendChild("country-info")
 
