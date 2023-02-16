@@ -25,6 +25,12 @@ async function search() {
     const valutas = data[0].currencies
     console.log("WHAT IS VALUTAS?", valutas)
 
+    let valutasKeys = Object.keys(valutas)
+    // console.log("valutasKeys?", valutasKeys)
+  
+    let valutasAll = valutasKeys[name]
+  console.log("valutasAll?", valutasAll)
+  
     // const allValutas = valutas.name
     // console.log("WHAT IS ALLVALUTAS?", allValutas)
 
@@ -36,10 +42,16 @@ async function search() {
     const languages = data[0].languages
     console.log("WHAT IS LANGUAGES?", languages)
 
-    // const allLanguages = languages.map((language) => {
-    //     return language
-    // })
-    // console.log("WHAT are ALLLANGUAGES?", allLanguages)
+  let languagesKeys = Object.keys(languages)
+  // console.log("WHAT IS languagesKeys?", languagesKeys) result: "deu", "fra", "nld"
+  let nrOfLanguagesKeys = languagesKeys.length
+  //  console.log("nrOfLanguagesKeys?", nrOfLanguagesKeys) result: 3
+
+  
+  
+
+  
+
 
     const flag = data[0].flags.png
     // console.log("WHAT IS FLAG?", flag)
