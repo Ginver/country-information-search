@@ -1,7 +1,7 @@
 
 async function search() {
 
-  const searchBar = document.getElementById("country-search");
+   const searchBar = document.getElementById("country-search");
   // console.log("SEARCHBAR VALUE?", searchBar.value)
   const countrySearch = searchBar.value
 
