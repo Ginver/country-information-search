@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>country-information search</title>
-    <link href="info-search.css" rel="stylesheet" type="text/css">
+  <meta charset="UTF-8">
+  <title>country-information search</title>
+  <link href="info-search.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
-<div id="intro">
+  <div id="intro">
     <h1>Let's search some country information!</h1>
-    <img id="globe-img" src="https://cdn.dribbble.com/users/1028385/screenshots/2952329/tgif_030.gif" alt="spinning globe animation">
-</div>
+    <img id="globe-img" src="https://cdn.dribbble.com/users/1028385/screenshots/2952329/tgif_030.gif"
+      alt="spinning globe animation">
+  </div>
 
-<div id="search">
+  <div id="search">
     <div id="country-input">
-        <label for="country-search">country search
-            <input id="country-search" type="text" value=" "/>
-        </label>
-        <button id="searchBtn" >search</button>
-<!--        <button id="searchBtn" onclick="document.getElementById('country-search').value = ''">SEARCH</button>-->
+      <label for="country-search">country search
+        <input id="country-search" type="text" value=" " />
+      </label>
+      <button id="searchBtn">search</button>
     </div>
 
     <div id="country-result">
-        <img id="flag-img" src=""/>
-        <p id="country-info" type="text" value=" "> </p>
+      <img id="flag-img" src="" />
+      <p id="country-info" type="text" value=" "> </p>
+
+      <!--       error message:  -->
     </div>
-</div>
+    <div id="err">
+    </div>
+  </div>
 
 
-<script src="main.js"></script>
-<script src="./node_modules/axios/dist/axios.min.js"></script>
+  <script src="main.js"></script>
+  <script src="./node_modules/axios/dist/axios.min.js"></script>
 </body>
+
 </html>

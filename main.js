@@ -1,97 +1,108 @@
 
 async function search() {
 
-// 8.	Zorg ervoor dat de waarde uit het input veld wordt gebruikt als query voor het GET request.
-// Er moet alleen een request gedaan worden als de gebruiker op enter drukt, of op de zoek-knop klikt.
+   const searchBar = document.getElementById("country-search");
+  // console.log("SEARCHBAR VALUE?", searchBar.value)
+  const countrySearch = searchBar.value
 
-    const searchBar = document.getElementById("country-search");
-    // console.log("SEARCHBAR VALUE?", searchBar.value)
+  try {
 
-    // try {
-    const countrySearch = searchBar.value
-    const response = await fetch(`https://restcountries.com/v3.1/name/${countrySearch}`)
-    const data = await response.json()
-    console.log("What is DATA?", data[0])
+  const response = await fetch(`https://restcountries.com/v3.1/name/${countrySearch}`)
+  const data = await response.json()
+    if (response.status === 404) {
+      throw new Error("Country not found")
+    }
+  // console.log("What is DATA?", data[0])
 
-    const countryName = data[0].name.common
-    // console.log("WHAT IS COUNTRYNAME?", countryName)
-    const subareaName = data[0].subregion
-    // console.log("WHAT IS SUBREGION?", subareaName)
-    const amount = data[0].population
-    // console.log("WHAT IS POPULATION?", amount)
-    const capitalCity = data[0].capital
-    // console.log("WHAT IS CAPITAL?", capitalCity)
+  const countryName = data[0].name.common
+  // console.log("WHAT IS COUNTRYNAME?", countryName)
+  const subareaName = data[0].subregion
+  // console.log("WHAT IS SUBREGION?", subareaName)
+  const amount = data[0].population
+  // console.log("WHAT IS POPULATION?", amount)
+  const capitalCity = data[0].capital
+  // console.log("WHAT IS CAPITAL?", capitalCity)
 
-    const valutas = data[0].currencies
-    console.log("WHAT IS VALUTAS?", valutas)
+  // CURRENCY:
+  const valutas = data[0].currencies
+  // console.log("WHAT IS VALUTAS?", valutas)
+  let currencyCodes = Object.keys(valutas)
+  // console.log("currencyCodes?", currencyCodes)
+  let nrOfCurrencies = currencyCodes.length
+  // console.log("nrOfCurrencies?", nrOfCurrencies)
+    
+function moreOutputCurrency() {
+    if (nrOfCurrencies === 1) {
+      let outputCurrency = currencyCodes
+    // for each currency, get the name -> ["German", "French"]
+    .map(code => valutas[code].name)
+      // console.log("outputCurrency?", outputCurrency[0].name)
+      return   outputCurrency
+      }
+    else if (nrOfCurrencies > 1 && nrOfCurrencies <= 3) {
+        let outputCurrency = currencyCodes
+        .slice(0, nrOfCurrencies -1)
+        .map(code => valutas[code].name)
+  // console.log("OUTPUTCURRENCY?", outputCurrency)
+           return outputCurrency.join(", ") + ` and ${valutas[currencyCodes.slice(-1)].name}`
+    }
+  }
+    const moreCurrency = moreOutputCurrency()
 
-    // const allValutas = valutas.name
-    // console.log("WHAT IS ALLVALUTAS?", allValutas)
+  // LANGUAGES:
+  const languages = data[0].languages
+  // console.log("WHAT IS LANGUAGES?", languages)
+  let languagesKeys = Object.keys(languages)
+  // console.log("WHAT IS languagesKeys?", languagesKeys)
+  let nrOfLanguages = languagesKeys.length
+  // console.log(nrOfLanguages)
+  
+  function moreOutputLanguages() {
+    if (nrOfLanguages === 1) {
+      // console.log(outputLanguages)
+      let outputLanguages = languagesKeys
+      return   outputLanguages
+      }
+    else if (nrOfLanguages > 1 && nrOfLanguages <= 3) {
+        let outputLanguages = languagesKeys
+        .slice(0, nrOfLanguages - 1)
+        .map(code => languages[code])
+      return outputLanguages.join(", ") + ` and ${languages[languagesKeys.slice(-1)]}`;
+    }
+  }
+  const moreLanguages = moreOutputLanguages()
+  // console.log(moreLanguages)
 
-    // const allValutas = valutas.map((valuta) => {
-    //     return valuta[0].name
-    // })
-    // console.log("What are CURRENCIES?", allValutas)
+  const flag = data[0].flags.png
+  // console.log("WHAT IS FLAG?", flag)
 
-    const languages = data[0].languages
-    console.log("WHAT IS LANGUAGES?", languages)
+  const flagImg = document.getElementById("flag-img").src = `${flag}`
+  // console.log("WHAT IS FLAGIMG?", flagImg)
 
-    // const allLanguages = languages.map((language) => {
-    //     return language
-    // })
-    // console.log("WHAT are ALLLANGUAGES?", allLanguages)
-
-    const flag = data[0].flags.png
-    // console.log("WHAT IS FLAG?", flag)
-
-    const flagImg = document.getElementById("flag-img").src = `${flag}`
-    // console.log("WHAT IS FLAGIMG?", flagImg)
-
-    const countryInformation = document.getElementById("country-info");
-    console.log("WHAT IS COUNTRYINFORMATION?", countryInformation)
-    countryInformation.textContent =`${countryName} is situated in ${subareaName}. It has a population of ${amount} people.
-    The capital is ${capitalCity} and you can pay with ${valutas}. They speak ${languages}`
-    document.appendChild("country-info")
-
-    // }
-    // catch (error) {
-    //     //console.log("WHAT IS ERROR?", error);
-    //     document.getElementById("country-info").textContent = "This country doesn't exist or your spelling is incorrect. Please try again.";
-    //     document.getElementById("flag-img").png = "";
-    // }
-
+  const countryInformation = document.getElementById("country-info");
+  // console.log("WHAT IS COUNTRYINFORMATION?", countryInformation)
+  countryInformation.textContent = `${countryName} is situated in ${subareaName}. It has a population of ${amount} people.
+    The capital is ${capitalCity} and you can pay with ${moreCurrency}. They speak ${moreLanguages}.`
+  }
+  catch (e) {
+    document.getElementById("err").textContent = "This country doesn't exist or your spelling is incorrect. Please try again."
+    document.getElementById("err").innerHTML = e;
+  }
 }
 
 document.getElementById("searchBtn").addEventListener("click", search)
 document.getElementById("country-search").addEventListener("click", function() {
-    document.getElementById("country-info").innerHTML = ''
-    document.getElementById("flag-img").src = ''
+  document.getElementById("country-info").innerHTML = ''
+  document.getElementById("flag-img").src = ''
 })
 
-
-// 7.	Maak een inputveld op de pagina en zorg ervoor dat als de gebruiker op enter drukt,
-// de functie wordt aangeroepen waarmee de gegevens over België worden opgehaald.
-
 const countrySearch = document.getElementById("country-search");
-    countrySearch.addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        // !!! Dit begrijp ik niet meer! Cancel the default action, if needed
-        event.preventDefault();
-
-        document.getElementById("searchBtn").click();
-
-// 9.	Zorg ervoor dat de waarde van het input veld wordt leeggemaakt na elke zoekopdracht.
-        document.getElementById("country-search").value = ''
-
-    }
+countrySearch.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("searchBtn").click();
+    document.getElementById("country-search").value = ''
+    document.getElementById("country-info").innerHTML = ''
+    document.getElementById("err").innerHTML = ''
+  }
 });
-
-
-//if statement
-//     // 1 valuta: and you can pay with [currency]'s
-//     // 2 valuta's: and you can pay with [currency]'s and [currency]'s
-//
-// if statement
-//     // 1 taal: They speak [language]
-//     // 2 talen: They speak [language] and [language]
-//     // 3 talen: They speak [language], [language] and [language]
