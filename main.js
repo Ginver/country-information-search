@@ -86,7 +86,6 @@ function moreOutputCurrency() {
   }
   catch (e) {
     document.getElementById("err").textContent = "This country doesn't exist or your spelling is incorrect. Please try again."
-    document.getElementById("err").innerHTML = e;
   }
 }
 
